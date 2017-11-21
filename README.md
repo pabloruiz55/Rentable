@@ -16,6 +16,12 @@ The owner of the contract will need to do some basic setup, which includes:
 
 It's worth noting that the minimum rental period also establishes how much money will be refunded for an early return. For example: If I rent a movie which minimum rental period is 12 hours and I supply enough ether for a 24 hours rental (1 ether per hour), if I return it before the 24 hours have passed, I will be refunded for the hours I didn't use the object. If I renturn it after 20 hours, I will be refunded 4 ether of the 24 I initially paid. But if I return the object within the minimum rental period I will still have to pay those minimum 12 hours, getting a refund of just the other 12 hours only.
 
+Once the item has been setup, any account can call the rent() function providing ether to it. The rental return date will be calculated based on the ether supplied and cost per second the owner previously set.
+
+While someone is the current renter of the item, they can call the functions of the contract marked as onlyRenter. At any moment they can call returnRental() to end the rental and get a refund (if applicable) of the time remaining.
+
+If they don't return the item, once the rental return date is reached, they will be unable to keep using the item and the owner can call forceRentalEnd() to remove the item from them and make it available for someone else.
+
 ## How to implement it
 
 1. Create a contract that inherits from Rentable and import Rentable.sol
@@ -24,8 +30,8 @@ It's worth noting that the minimum rental period also establishes how much money
 
 3. On each of the functions that you want to restrict usage, add these 2 modifiers: onlyRenter and whenRented.
 
-onlyRenter will cause the function to require it to be executed by the address currently set as renter.
-whenRented will cause the function to fail if executed outside of the rental period set for the current renter.
+- onlyRenter will cause the function to require it to be executed by the address currently set as renter.
+- whenRented will cause the function to fail if executed outside of the rental period set for the current renter.
 
 
 ## Rentable object setup
