@@ -50,7 +50,7 @@ Once you call this function, the item will be available for rental.
 
 Once your Rentable item has been set up, any account can rent it by calling the rent() function or just by sending ether to the contract (and supplying enough gas). 
 
-1. The account trying to rent the item sends ether to the contract. This executes the fallback function, which in turn, executes rent(). If enough ether was supplied to rent the item within the minimum and maximum thresholds, then the item gets rented by the account.
+1. The account trying to rent the item executes the rent() function while supplying ether to it. If enough ether was supplied to rent the item within the minimum and maximum thresholds, then the item gets rented by the account.
 
 2. While the account is the renter of the item, they can execute any function marked as onlyRenter and whenRented.
 
