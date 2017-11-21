@@ -1,5 +1,5 @@
 # Rentable
-A contract for making contracts that can be rented.
+A contract for making contracts/items that can be rented.
 
 The Rentable contract allows any contract inheriting from it to be rented.
 The owner of the item (whoever deployed the contract) can set the terms of the rental and make the item available for others to use it for as long as they want (within some limits set by the owner).
@@ -55,3 +55,9 @@ Once your Rentable item has been set up, any account can rent it by calling the 
 2. While the account is the renter of the item, they can execute any function marked as onlyRenter and whenRented.
 
 3. To return the item (and recover any unspent funds) the renter has to call returnRental().
+
+## Examples
+
+I've included a Movie.sol contract which implements the Rentable protocol.
+Once deployed, anyone can rent the movie and call the watchMovie() function to "watch it".
+
