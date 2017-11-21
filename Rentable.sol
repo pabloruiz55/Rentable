@@ -131,10 +131,6 @@ contract Rentable {
         rentalPrice = _pricePerSecond;
     }
 
-    function() public payable {
-      rent();
-    }
-
     /// @dev rents the object for any given time depending money sent and price of object
     function rent() public payable ifAvailable whenNotRented{
         require (msg.value > 0);
